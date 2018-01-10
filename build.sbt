@@ -5,7 +5,7 @@ scalaVersion  := "2.11.12"
 
 // Build dependencies.
 libraryDependencies ++= Seq(
-  organization.value %% "tox4j-c" % "0.1.3-SNAPSHOT"
+  organization.value %% "tox4j-c" % "0.1.3"
 )
 
 import im.tox.sbt.lint.Scalastyle
