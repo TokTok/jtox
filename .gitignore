@@ -1,0 +1,32 @@
+# GitHub pages.
+/.web
+
+# SBT compiled build system.
+/project/project
+/project/target
+
+# SBT output directory.
+/target
+
+# Local user settings for SBT and Java.
+/local.sbt
+/local.properties
+
+# IDEA meta files.
+.idea
+*.iml
+*.ipr
+*.iws
+
+# Temporary editor files.
+*.swp
+*~
+
+# Virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Debug log from toxcore.
+libtoxcore.log
+
+# Java runtime support for disassembly.
+hsdis-*.*
