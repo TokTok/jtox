@@ -1,8 +1,6 @@
-# Tox4j (C backend)
+# Java Tox client
 
-This repository contains the [c-toxcore](https://github.com/TokTok/c-toxcore)
-backed implementation of the generic backend-agnostic JVM
-[toxcore-api](https://github.com/TokTok/jvm-toxcore-api).
+This is a simple test client for tox4j.
 
 
 ## Contributing
@@ -11,18 +9,7 @@ We're using the standard Github workflow for our code reviews. Just open Pull
 Requests and the reviewer will guide you through the process.
 
 
-## Build status
-
-|      Build      |   Status  |
-|-----------------|-----------|
-| Travis CI       | [![Travis Build Status](https://api.travis-ci.org/tox4j/tox4j.svg)](https://travis-ci.org/tox4j/tox4j) | 
-| Coverage        | [![Coverage Status](https://coveralls.io/repos/tox4j/tox4j/badge.svg?branch=master)](https://coveralls.io/r/tox4j/tox4j?branch=master) |
-| Android arm64   | [![Android arm64 Status](https://build.tox.chat/buildStatus/icon?job=tox4j_build_android_arm64_release)](https://build.tox.chat/job/tox4j_build_android_arm64_release/) |
-| Android armeabi | [![Android armeabi Status](https://build.tox.chat/buildStatus/icon?job=tox4j_build_android_armel_release)](https://build.tox.chat/job/tox4j_build_android_armel_release/) |
-| Android x86     | [![Android x86 Status](https://build.tox.chat/buildStatus/icon?job=tox4j_build_android_x86_release)](https://build.tox.chat/job/tox4j_build_android_x86_release/) |
-
-
-# Building Tox4j
+# Building jTox
 
 ## Dependencies: compile
 
@@ -33,12 +20,12 @@ To build the package itself, the following dependencies are required:
 - com.google.guava:guava:19.0
 - com.google.protobuf:protobuf-java:3.5.0
 - com.intellij:annotations:12.0
-- com.lihaoyi:fastparse-utils_2.11:0.4.2
-- com.lihaoyi:fastparse_2.11:0.4.2
-- com.lihaoyi:sourcecode_2.11:0.1.3
-- com.trueaccord.lenses:lenses_2.11:0.4.9
-- com.trueaccord.scalapb:scalapb-runtime-grpc_2.11:0.5.46
-- com.trueaccord.scalapb:scalapb-runtime_2.11:0.5.46
+- com.lihaoyi:fastparse-utils_2.11:0.3.7
+- com.lihaoyi:fastparse_2.11:0.3.7
+- com.lihaoyi:sourcecode_2.11:0.1.1
+- com.trueaccord.lenses:lenses_2.11:0.4.7
+- com.trueaccord.scalapb:scalapb-runtime-grpc_2.11:0.5.43
+- com.trueaccord.scalapb:scalapb-runtime_2.11:0.5.43
 - com.typesafe.scala-logging:scala-logging_2.11:3.7.2
 - io.grpc:grpc-context:1.0.1
 - io.grpc:grpc-core:1.0.1
@@ -52,6 +39,7 @@ To build the package itself, the following dependencies are required:
 - org.scodec:scodec-bits_2.11:1.1.2
 - org.scodec:scodec-core_2.11:1.10.3
 - org.slf4j:slf4j-api:1.7.25
+- org.toktok:jtox_2.11:0.1.0
 - org.toktok:macros_2.11:0.1.0
 - org.toktok:tox4j-api_2.11:0.1.3
 - org.toktok:tox4j-c_2.11:0.1.3-SNAPSHOT
@@ -61,39 +49,6 @@ To build the package itself, the following dependencies are required:
 
 For testing, the following additional dependencies are required:
 
-- asm:asm-commons:3.0
-- asm:asm-tree:3.0
-- asm:asm:3.0
-- com.fasterxml.jackson.core:jackson-annotations:2.5.2
-- com.fasterxml.jackson.core:jackson-core:2.5.2
-- com.fasterxml.jackson.core:jackson-databind:2.5.2
-- com.fasterxml.jackson.module:jackson-module-scala_2.11:2.5.2
-- com.github.wookietreiber:scala-chart_2.11:0.4.2
-- com.intellij:forms_rt:7.0.3
-- com.jgoodies:forms:1.1-preview
-- com.storm-enroute:scalameter-core_2.11:0.7
-- com.storm-enroute:scalameter_2.11:0.7
-- com.thoughtworks.paranamer:paranamer:2.6
-- jdom:jdom:1.0
-- jline:jline:2.14.2
-- junit:junit:4.12
-- log4j:log4j:1.2.17
-- org.apache.commons:commons-lang3:3.4
-- org.apache.commons:commons-math3:3.2
-- org.hamcrest:hamcrest-core:1.3
-- org.jfree:jcommon:1.0.21
-- org.jfree:jfreechart:1.0.17
-- org.ow2.asm:asm:5.0.4
-- org.scala-lang.modules:scala-swing_2.11:1.0.1
-- org.scala-sbt:test-interface:1.0
-- org.scala-tools.testing:test-interface:0.5
-- org.scalacheck:scalacheck_2.11:1.13.4
-- org.scalactic:scalactic_2.11:3.0.1
-- org.scalatest:scalatest_2.11:3.0.1
-- org.scalaz:scalaz-concurrent_2.11:7.2.8
-- org.scalaz:scalaz-effect_2.11:7.2.8
-- org.slf4j:slf4j-log4j12:1.7.22
-- xml-apis:xml-apis:1.3.04
 
 ## C/C++ dependencies
 
