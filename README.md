@@ -2,6 +2,8 @@
 
 This is a simple test client for tox4j.
 
+![Screenshot](doc/screenshot.png)
+
 
 ## Contributing
 
