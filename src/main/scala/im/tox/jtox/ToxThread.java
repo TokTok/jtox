@@ -1,18 +1,20 @@
 package im.tox.jtox;
 
+import im.tox.jtox.events.CallbackEventListener;
+import im.tox.jtox.events.ComposedEventListener;
+import im.tox.jtox.events.LoggingEventListener;
 import im.tox.tox4j.av.ToxAv;
 import im.tox.tox4j.core.ToxCore;
-import im.tox.tox4j.core.callbacks.ToxCoreEventListener;
 import im.tox.tox4j.core.options.ToxOptions;
 import im.tox.tox4j.crypto.ToxCrypto;
 import im.tox.tox4j.impl.jni.ToxAvImpl;
 import im.tox.tox4j.impl.jni.ToxCoreImpl;
-import im.tox.tox4j.impl.jni.ToxCryptoImpl;
 import im.tox.tox4j.impl.jni.ToxCryptoImpl$;
 import org.jetbrains.annotations.NotNull;
 
 public class ToxThread {
     private static ToxThread tox;
+    public static final CallbackEventListener<ToxState> events = new CallbackEventListener<>();
 
     private final ToxCrypto crypto;
     private final ToxCore core;
@@ -21,13 +23,15 @@ public class ToxThread {
     private boolean running = true;
     private ToxState state = new ToxState();
 
-    private ToxThread(ToxOptions options, ToxCoreEventListener<ToxState> eventListener) {
+    private ToxThread(ToxOptions options) {
         ToxCoreImpl core = new ToxCoreImpl(options);
         this.crypto = ToxCryptoImpl$.MODULE$;
         this.core = core;
         this.av = new ToxAvImpl(core);
 
         this.thread = new Thread(() -> {
+            ComposedEventListener<ToxState> eventListener = new ComposedEventListener<>(
+                    events, new LoggingEventListener<>());
             try (ToxCore localCore = this.core) {
                 while (running) {
                     try {
@@ -66,18 +70,17 @@ public class ToxThread {
         return tox.av;
     }
 
-    public static void start(@NotNull ToxOptions options, @NotNull ToxCoreEventListener<ToxState> eventListener) {
-        if (tox != null) {
-            try {
-                stop();
-            } catch (InterruptedException e) {
-                // ignore
-            }
+    public static void start(@NotNull ToxOptions options) {
+        try {
+            stop();
+        } catch (InterruptedException e) {
+            // ignore
         }
-        tox = new ToxThread(options, eventListener);
+        tox = new ToxThread(options);
     }
 
     public static void stop() throws InterruptedException {
+        if (tox == null) return;
         tox.running = false;
         tox.thread.join();
         tox = null;
