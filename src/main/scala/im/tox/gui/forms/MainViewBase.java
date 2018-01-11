@@ -38,5 +38,4 @@ public class MainViewBase extends JFrame {
     setContentPane(contentPane);
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
   }
-
 }

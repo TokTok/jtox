@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="im.tox.jtox.forms.ConnectionController">
+   <CheckBox fx:id="chkEnableIpv6" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" selected="true" text="Enable IPv6" />
+   <CheckBox fx:id="chkEnableUdp" mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" selected="true" text="Enable UDP" GridPane.columnIndex="1" />
+   <CheckBox fx:id="chkEnableLanDiscovery" mnemonicParsing="false" selected="true" text="Enable LAN discovery" GridPane.columnIndex="2" />
+   <Label text="Proxy type" GridPane.rowIndex="1" />
+   <RadioButton fx:id="btnProxyNone" mnemonicParsing="false" selected="true" text="None" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <toggleGroup>
+         <ToggleGroup fx:id="proxyType" />
+      </toggleGroup></RadioButton>
+   <RadioButton fx:id="btnProxyHttp" mnemonicParsing="false" text="HTTP" toggleGroup="$proxyType" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+   <RadioButton fx:id="btnProxySocks" mnemonicParsing="false" text="SOCKS" toggleGroup="$proxyType" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+   <TextField fx:id="txtProxyHost" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+   <TextField fx:id="txtProxyPort" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+   <Button fx:id="btnInitialise" mnemonicParsing="false" onAction="#btnInitialiseClicked" text="Initialise" GridPane.rowIndex="4" />
+   <TextField fx:id="txtAddress" text="Once connected, your Tox address will appear here" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+   <Label text="Tox Address" GridPane.rowIndex="5" />
+   <Label text="Bootstrap host/port" GridPane.rowIndex="7" />
+   <Label text="Bootstrap key" GridPane.rowIndex="8" />
+   <TextField fx:id="txtBootstrapHost" text="biribiri.org" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+   <TextField fx:id="txtBootstrapKey" prefHeight="27.0" prefWidth="400.0" text="F404ABAA1C99A9D37D61AB54898F56793E1DEF8BD46B1038B9D822E8460FAB67" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+   <Button fx:id="btnBootstrap" disable="true" mnemonicParsing="false" onAction="#btnBootstrapClicked" text="Bootstrap" GridPane.rowIndex="9" />
+   <Separator prefHeight="14.0" GridPane.columnSpan="4" GridPane.rowIndex="6" />
+   <Separator prefHeight="14.0" GridPane.columnSpan="4" GridPane.rowIndex="10" />
+   <Label text="Friend Tox Address" GridPane.rowIndex="11" />
+   <Label text="Message" GridPane.rowIndex="12" />
+   <TextField fx:id="txtFriendAddress" text="DA6B2411E6880C6CE25DA59E4163F70C6963108DD61E2C71D725E2F59F4C7B2F8281367503F4" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="11" />
+   <TextField fx:id="txtFriendMessage" text="Hey, you wanna be friends?" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="12" />
+   <Button fx:id="btnAddFriend" disable="true" mnemonicParsing="false" onAction="#btnAddFriendClicked" text="Add friend" GridPane.rowIndex="13" />
+   <Label text="Proxy host/port" GridPane.rowIndex="3" />
+   <TextField fx:id="txtBootstrapPort" prefWidth="75.0" text="33445" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+   <columnConstraints>
+      <ColumnConstraints prefWidth="140.0" />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
