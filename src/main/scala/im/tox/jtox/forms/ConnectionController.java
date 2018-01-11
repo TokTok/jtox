@@ -2,15 +2,13 @@ package im.tox.jtox.forms;
 
 import im.tox.jtox.Keys;
 import im.tox.jtox.ToxThread;
-import im.tox.jtox.events.ComposedEventListener;
-import im.tox.jtox.events.GuiEventListener;
-import im.tox.jtox.events.LoggingEventListener;
 import im.tox.tox4j.core.ToxCoreConstants;
 import im.tox.tox4j.core.exceptions.ToxBootstrapException;
 import im.tox.tox4j.core.exceptions.ToxFriendAddException;
 import im.tox.tox4j.core.options.ProxyOptions;
 import im.tox.tox4j.core.options.SaveDataOptions;
 import im.tox.tox4j.core.options.ToxOptions;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -36,7 +34,9 @@ public class ConnectionController implements Initializable {
     public TextField txtBootstrapKey;
     public TextField txtFriendAddress;
     public TextField txtFriendMessage;
+    public TextField txtSecretKey;
     public TextField txtAddress;
+    public Label lblConnection;
 
     private interface ProxyType {
         ProxyOptions create();
@@ -49,9 +49,18 @@ public class ConnectionController implements Initializable {
                 new ProxyOptions.Http(txtProxyHost.getText(), Integer.parseInt(txtProxyPort.getText())));
         btnProxySocks.setUserData((ProxyType) () ->
                 new ProxyOptions.Socks5(txtProxyHost.getText(), Integer.parseInt(txtProxyPort.getText())));
+
+        ToxThread.events.selfConnectionStatus.add((connectionStatus, state) -> {
+            Platform.runLater(() -> lblConnection.setText(connectionStatus.toString()));
+            return state;
+        });
     }
 
     public void btnInitialiseClicked(ActionEvent actionEvent) {
+        SaveDataOptions saveData = txtSecretKey.getLength() != 0
+                ? new SaveDataOptions.SecretKey(Keys.parsePublicKey(txtSecretKey.getText()))
+                : SaveDataOptions.None$.MODULE$;
+
         ToxThread.start(new ToxOptions(
                 chkEnableIpv6.isSelected(),
                 chkEnableUdp.isSelected(),
@@ -60,12 +69,9 @@ public class ConnectionController implements Initializable {
                 ToxCoreConstants.DefaultStartPort(),
                 ToxCoreConstants.DefaultEndPort(),
                 ToxCoreConstants.DefaultTcpPort(),
-                SaveDataOptions.None$.MODULE$,
+                saveData,
                 true
-        ), new ComposedEventListener<>(
-                new GuiEventListener(this),
-                new LoggingEventListener<>())
-        );
+        ));
 
         txtAddress.setText(Keys.readablePublicKey(ToxThread.core().getAddress()));
 

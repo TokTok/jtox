@@ -34,6 +34,11 @@
                     <fx:include source="connection.fxml" />
                 </content>
             </Tab>
+            <Tab closable="false" text="Chat">
+                <content>
+                    <fx:include source="chat.fxml" />
+                </content>
+            </Tab>
         </tabs>
     </TabPane>
 </VBox>

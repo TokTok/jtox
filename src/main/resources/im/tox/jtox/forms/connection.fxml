@@ -42,7 +42,9 @@
    <Label text="Proxy host/port" GridPane.rowIndex="3" />
    <TextField fx:id="txtBootstrapPort" text="33445" GridPane.columnIndex="3" GridPane.rowIndex="8" />
    <Label text="Secret key" GridPane.rowIndex="5" />
-   <TextField GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+   <TextField fx:id="txtSecretKey" text="0000000000000000000000000000000000000000000000000000000000000000" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+   <Label text="Connection:" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+   <Label fx:id="lblConnection" text="disconnected" GridPane.columnIndex="2" GridPane.rowIndex="4" />
    <columnConstraints>
       <ColumnConstraints prefWidth="140.0" />
       <ColumnConstraints />
