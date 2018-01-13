@@ -3,6 +3,7 @@ package im.tox.jtox;
 import im.tox.jtox.events.CallbackEventListener;
 import im.tox.jtox.events.ComposedEventListener;
 import im.tox.jtox.events.LoggingEventListener;
+import im.tox.jtox.model.State;
 import im.tox.tox4j.av.ToxAv;
 import im.tox.tox4j.core.ToxCore;
 import im.tox.tox4j.core.options.ToxOptions;
@@ -14,14 +15,14 @@ import org.jetbrains.annotations.NotNull;
 
 public class ToxThread {
     private static ToxThread tox;
-    public static final CallbackEventListener<ToxState> events = new CallbackEventListener<>();
+    public static final CallbackEventListener<State> events = new CallbackEventListener<>();
 
     private final ToxCrypto crypto;
     private final ToxCore core;
     private final ToxAv av;
     private final Thread thread;
     private boolean running = true;
-    private ToxState state = new ToxState();
+    private State state = new State();
 
     private ToxThread(ToxOptions options) {
         ToxCoreImpl core = new ToxCoreImpl(options);
@@ -30,7 +31,7 @@ public class ToxThread {
         this.av = new ToxAvImpl(core);
 
         this.thread = new Thread(() -> {
-            ComposedEventListener<ToxState> eventListener = new ComposedEventListener<>(
+            ComposedEventListener<State> eventListener = new ComposedEventListener<>(
                     events, new LoggingEventListener<>());
             try (ToxCore localCore = this.core) {
                 while (running) {
