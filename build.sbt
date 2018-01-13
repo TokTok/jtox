@@ -10,6 +10,8 @@ resolvers += Resolver.bintrayRepo("toktok", "maven")
 libraryDependencies ++= Seq(
   "org.slf4j" % "slf4j-log4j12" % "1.7.22",
 
+  organization.value % "tox4j-c_darwin-x86_64" % "0.2.0",
+  organization.value % "tox4j-c_linux-x86_64" % "0.2.0",
   organization.value %% "tox4j-c" % "0.1.3"
 )
 
