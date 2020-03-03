@@ -1,8 +1,9 @@
 ---
-language: scala
-scala: 2.11.12
+language: java
+os: linux
 
 cache:
   directories:
-    - $HOME/.ivy2
-    - $HOME/.sbt
+    - $HOME/.m2
+
+before_install: cp settings.xml ~/.m2/
