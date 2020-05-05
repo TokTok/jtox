@@ -7,3 +7,7 @@ cache:
     - $HOME/.m2
 
 before_install: cp settings.xml ~/.m2/
+
+# Only build pull requests and releases, don't build master on pushes,
+# except through api or cron.
+if: type IN (pull_request, api, cron) OR tag IS present

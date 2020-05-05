@@ -18,7 +18,22 @@
      <dependency>
        <groupId>org.toktok</groupId>
        <artifactId>tox4j-c_2.11</artifactId>
-       <version>0.2.1</version>
+       <version>0.2.3</version>
+     </dependency>
+     <dependency>
+       <groupId>org.toktok</groupId>
+       <artifactId>tox4j-c_darwin-x86_64</artifactId>
+       <version>0.2.11</version>
+     </dependency>
+     <dependency>
+       <groupId>org.toktok</groupId>
+       <artifactId>tox4j-c_linux-x86_64</artifactId>
+       <version>0.2.11</version>
+     </dependency>
+     <dependency>
+       <groupId>org.toktok</groupId>
+       <artifactId>tox4j-c_windows-x86_64</artifactId>
+       <version>0.2.0</version>
      </dependency>
 
      <dependency>
@@ -43,6 +58,28 @@
          <configuration>
            <mainClass>HelloFX</mainClass>
          </configuration>
+       </plugin>
+       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>single</goal>
+              </goals>
+              <configuration>
+                <archive>
+                <manifest>
+                  <mainClass>im.tox.jtox.Main</mainClass>
+                </manifest>
+                </archive>
+                <descriptorRefs>
+                  <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+              </configuration>
+            </execution>
+          </executions>
        </plugin>
      </plugins>
    </build>
