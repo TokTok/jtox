@@ -39,7 +39,7 @@
      <dependency>
        <groupId>org.openjfx</groupId>
        <artifactId>javafx-controls</artifactId>
-       <version>22</version>
+       <version>24-ea+25</version>
      </dependency>
 
      <dependency>
